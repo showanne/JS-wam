@@ -30,13 +30,16 @@
     margin: auto;
     font-family: 'Pangolin', cursive;
     font-size: 2.7rem;
+    box-sizing: border-box;
+
+    /* 按鍵間距 */
+    border-spacing: 17px;
   }
 
   table td {
     width: 90px;
     height: 90px;
     text-align: center;
-    border-spacing: 17px;
   }
 
   /* table td:hover {
@@ -93,6 +96,7 @@
 
   .info {
     width: 17%;
+    /* text-align: center; */
   }
 
   .game {
@@ -157,13 +161,13 @@
 
 <body>
   <div class="center">
-    <!-- 觸發按鈕及資訊區 -->
-    <div class="info inline">
+    <!-- 觸發按鈕 -->
+    <div>
       <button class="paper-border mode" id="start">開始</button>
       <!-- <button class="paper-border" id="stop">暫停</button> -->
       <button class="paper-border" id="end">結束</button>
       <button class="paper-border" id="switch">中英切換</button>
-      <br>
+      <!-- <br> -->
       <button class="paper-border mode" id="key-four">隨機 <b>4鍵</b> 模式</button>
       <button class="paper-border mode" id="key-eight">隨機 <b>8鍵</b> 模式</button>
       <button class="paper-border mode" id="key-twelve">隨機 <b>12鍵</b> 模式</button>
@@ -171,20 +175,6 @@
         隨機 <b>隨機鍵</b> 模式
         <br><small>本次隨機到<span id="key-R"> - </span>鍵</small>
       </button>
-
-      <br>
-      <p>Key(目前點擊)：<span id="key-score"> - </span>鍵</p>
-      <p>Time(持續時間)：<span id="time-score"> - </span>秒</p>
-      <p>Player(遊戲紀錄)：<span id="player-score"> - </span>
-      <ul id="list-score">
-        <li>等級 - 姓名 - 鍵數 - 時間</li>
-      </ul>
-      </p>
-      <!-- Window.localStorage
-          https://developer.mozilla.org/zh-TW/docs/Web/API/Window/localStorage
-          https://andy6804tw.github.io/2018/03/04/browser-localstorage/#%E5%88%AA%E9%99%A4%E6%95%B4%E5%80%8B-storage
-          https://ithelp.ithome.com.tw/articles/10195522
-          -->
     </div>
 
     <!-- 遊戲區 -->
@@ -242,6 +232,22 @@
           <td id="KeyM">M</td>
         </tr>
       </table>
+    </div>
+
+    <!-- 資訊區 -->
+    <div class="info inline">
+      <p>Key(目前點擊)：<span id="key-score"> - </span>鍵</p>
+      <p>Time(持續時間)：<span id="time-score"> - </span>秒</p>
+      <p>Player(遊戲紀錄)：<span id="player-score"> - </span>
+      <ul id="list-score">
+        <li>等級 - 姓名 - 鍵數 - 時間</li>
+      </ul>
+      </p>
+      <!-- Window.localStorage
+          https://developer.mozilla.org/zh-TW/docs/Web/API/Window/localStorage
+          https://andy6804tw.github.io/2018/03/04/browser-localstorage/#%E5%88%AA%E9%99%A4%E6%95%B4%E5%80%8B-storage
+          https://ithelp.ithome.com.tw/articles/10195522
+          -->
     </div>
   </div>
 
