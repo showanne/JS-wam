@@ -37,7 +37,7 @@
 
   .game {
     /* width: calc(96% - 265px); */
-    background-color: rgb(234, 241, 255);
+    background-color: rgb(234, 255, 239);
     box-sizing: border-box;
     padding: 59px 39px;
   }
@@ -72,12 +72,8 @@
   }
 
   button:hover {
-    /* background: rgba(255, 246, 195, 0.5); */
-
     background-color: rgba(218, 195, 255, 0.50);
     box-shadow: 0 5px 15px 0 rgba(31, 38, 135, 0.37);
-
-    /* box-shadow: 0 8px 32px 0 rgba(135, 102, 31, 0.37); */
   }
 
   .game table {
@@ -132,15 +128,15 @@
     /* font-weight: 900; */
     /* letter-spacing: 2px; */
     text-transform: uppercase;
-    /* background-color: #fff; */
-    border: 3px solid #303030;
+    background-color: rgb(247, 255, 241);
+    border: 3px solid #193520;
     border-radius: 5px;
     box-shadow:
-      1px 1px 0 #303030a2,
-      2px 2px 0 #303030a2,
-      3px 3px 0 #303030a2,
-      4px 4px 0 #303030a2,
-      5px 5px 0 #303030a2;
+      1px 1px 0 #193520a2,
+      2px 2px 0 #193520a2,
+      3px 3px 0 #193520a2,
+      4px 4px 0 #193520a2,
+      5px 5px 0 #193520a2;
     position: relative;
 
     /* transition: 0.5s; */
@@ -148,7 +144,7 @@
   }
 
   .key:hover {
-    background-color: #b4a4fb1e;
+    background-color: #a4fbb248;
   }
 
   .key:active {
@@ -568,7 +564,8 @@
           key++
           KeyScore.innerText = key
         } else {
-          // 如果按到錯誤的鍵，錯誤鍵數會增加
+          // 如果按到錯誤的鍵，錯誤鍵數會增加，並且改色
+          type.setAttribute("background-color", "#f61e1e")
           error++
           ErrorScore.innerText = error
         }
