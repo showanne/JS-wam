@@ -66,7 +66,7 @@
 
   /* 神奇不規則線條 PaperCSS framework */
   .paper-border {
-    border-color: #350452;
+    border-color: #e3b3ff8c;
     border-style: solid;
     border-width: 2px;
     border-bottom-left-radius: 15px 255px;
@@ -76,7 +76,7 @@
   }
 
   button:hover {
-    background-color: rgba(218, 195, 255, 0.50);
+    background-color: rgba(231, 221, 248, 0.5);
     box-shadow: 0 5px 15px 0 rgba(31, 38, 135, 0.37);
   }
 
@@ -159,12 +159,12 @@
   }
 
   .colorOrign {
-    background-color: slateblue;
-    color: lemonchiffon;
+    background-color: rgba(111, 216, 50, 0.555);
+    color: rgb(119, 133, 81);
   }
 
   .colorOn {
-    background-color: #f6d51e;
+    background-color: #f6d61e2d;
     color: #744802;
 
     /* 樣式同 .key:active */
@@ -411,8 +411,8 @@
       modeDisabled(true)
       calc()
 
-      timer = setInterval(keyValue, 3000, 2)
-      setInterval(timer, 3000, 2)
+      // timer = setInterval(keyValue, 3000, 2)
+      setInterval(keyValue, 3000, 2)
       keyValue(2)  //初始二鍵模式
     }
 
@@ -425,7 +425,7 @@
     // 結束 按鍵
     btnEnd.onclick = () => {
       console.log('end');
-      clearInterval(timer)
+      clearInterval(keyValue)
       modeDisabled(false)
 
       for (const td of tds) {
@@ -508,7 +508,7 @@
       modeDisabled()
       calc()
 
-      setInterval(timer, 3000, 4)
+      setInterval(keyValue, 3000, 4)
       keyValue(4)
     }
 
@@ -516,7 +516,7 @@
       modeDisabled()
       calc()
 
-      setInterval(timer, 3000, 8)
+      setInterval(keyValue, 3000, 8)
       keyValue(8)
     }
 
@@ -524,7 +524,7 @@
       modeDisabled()
       calc()
 
-      setInterval(timer, 3000, 12)
+      setInterval(keyValue, 3000, 12)
       keyValue(12)
     }
 
@@ -536,7 +536,7 @@
       console.log(`${R}`);
       keyR.innerText = R
 
-      setInterval(timer, 3000, R)
+      setInterval(keyValue, 3000, R)
       keyValue(R)
     }
 
