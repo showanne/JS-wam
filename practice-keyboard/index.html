@@ -76,7 +76,7 @@
   }
 
   button:hover {
-    background-color: rgba(231, 221, 248, 0.5);
+    background-color: rgb(245, 239, 255);
     box-shadow: 0 5px 15px 0 rgba(31, 38, 135, 0.37);
   }
 
@@ -172,6 +172,10 @@
     left: 5px;
     box-shadow: 0 0 0 0;
     /* 有被其他屬性蓋過去 */
+  }
+
+  .colorError {
+    background-color: #f61e1e7e;
   }
 
   /* .key:after {
@@ -327,7 +331,7 @@
     let time = 0    //持續的時間
 
     // 將要存入 Storage 的資料命名成變數 ScoreHistory (JSON 物件) 包起來
-    let ScoreHistory = { name: '', key: 0, error: 0, time: 0 }
+    let ScoreHistory = { level: '', name: '', key: 0, error: 0, time: 0 }
 
     // 問號運算子 - 條件 ? 成立時執行的程式  : 否定時執行的程式
     // 宣告一個容器為陣列，StorageArr 代表儲存多筆資料，先判斷瀏覽器是否存在資料，若無我們就初始化並新增一個容器，反之若有則使用 getItem() 方法將值從瀏覽器中撈出來。
@@ -345,7 +349,7 @@
       if (ScoreStorage !== 0) {
         ListScore.insertAdjacentHTML('beforeend', `
         <tr>
-          <td align="center">測試</td>
+          <td align="center">${ScoreStorage.StorageArr[S].level}</td>
           <td align="center">${ScoreStorage.StorageArr[S].name}</td>
           <td align="center">${ScoreStorage.StorageArr[S].key}鍵</td>
           <td align="center">${ScoreStorage.StorageArr[S].error}鍵</td>
@@ -379,6 +383,7 @@
       for (const td of tds) {
         td.classList.remove('colorOrign')
         td.classList.remove('colorOn')
+        td.classList.remove('colorError')
       }
 
       for (let i = 0; i < k; i++) {
@@ -405,6 +410,28 @@
       TimeScore.innerText = time
     }
 
+    // 判斷獲得等級
+    const level = () => {
+      // 設變數-總出現鍵數；計算 key/總出現鍵數的%  /  error/總出現鍵數的%
+
+      if (key < 5) {
+        return '鐵人'
+        //    ${key} 鍵，鐵人
+      } else if (key >= 5 && key < 10) {
+        return '青銅'
+        //    ${key} 鍵，青銅
+      } else if (key >= 10 && key < 15) {
+        return '白銀'
+        //    ${key} 鍵，白銀
+      } else if (key >= 15 && key < 20) {
+        return '黃金'
+        //    ${key} 鍵，黃金
+      } else {
+        return '鑽石'
+        //    ${key} 鍵，鑽石
+      }
+      // 鑽石 黃金 白銀 青銅 鐵人
+    }
 
     // 開始 按鍵
     btnStart.onclick = () => {
@@ -434,7 +461,9 @@
       }
 
       Swal.fire({
-        title: `恭喜你成功按到 ${key} 個鍵，加油<br>路過請留下大名`,
+        title: `恭喜你成功按到 ${key} 個鍵，加油
+                <br>目前等級為 ${level()}
+                <br>路過請留下大名，謝謝`,
         input: 'text',
         inputAttributes: {
           maxlength: 3, //控制字數
@@ -448,15 +477,15 @@
         // console.log(result.value);
         ListScore.insertAdjacentHTML('beforeend', `
         <tr>
-          <td align="center">測試</td>
+          <td align="center">${level()}</td>
           <td align="center">${result.value}</td>
           <td align="center">${key}鍵</td>
           <td align="center">${error}鍵</td>
           <td align="center">${time}秒</td>
         </tr>
         `);
-        // <li>測試 - ${result.value} - ${key}鍵 - ${time}秒</li>
 
+        ScoreHistory.level = level()
         ScoreHistory.key = key
         ScoreHistory.error = error
         ScoreHistory.time = time
@@ -477,35 +506,10 @@
         // 每次結束後，都重新整理，讓 ScoreHistory 可以重新儲存新的變數
         window.location.reload();
       })
-
-
-
-      // console.log(result.value);
-
-      // if (key < 5) {
-      //   const Lv1 = prompt(`恭喜你成功按到 ${key} 個鍵，目前等級為 鐵人，加油`)
-      //   ListScore.insertAdjacentHTML('beforeend', `<li>鐵人 - ${Lv1} - ${key}鍵 - ${time}秒</li>`);
-      // } else if (key >= 5 && key < 10) {
-      //   const Lv2 = prompt(`恭喜你成功按到 ${key} 個鍵，目前等級為 青銅，加油`)
-      //   ListScore.insertAdjacentHTML('beforeend', `<li>青銅 - ${Lv2} - ${key}鍵 - ${time}秒</li>`);
-
-      // } else if (key >= 10 && key < 15) {
-      //   const Lv3 = prompt(`恭喜你成功按到 ${key} 個鍵，目前等級為 白銀，加油`)
-      //   ListScore.insertAdjacentHTML('beforeend', `<li>白銀 - ${Lv3} - ${key}鍵 - ${time}秒</li>`);
-      // } else if (key >= 15 && key < 20) {
-      //   const Lv4 = prompt(`恭喜你成功按到 ${key} 個鍵，目前等級為 黃金，加油`)
-      //   ListScore.insertAdjacentHTML('beforeend', `<li>黃金 - ${Lv4} - ${key}鍵 - ${time}秒</li>`);
-      // } else {
-      //   const Lv5 = prompt(`恭喜你成功按到 ${key} 個鍵，目前等級為 鑽石，加油`)
-      //   ListScore.insertAdjacentHTML('beforeend', `<li>鑽石 - ${Lv5} - ${key}鍵 - ${time}秒</li>`);
-      // }
-      // 鑽石 黃金 白銀 青銅 鐵人
-      // key = 0
-      // KeyScore.innerText = key
     }
 
     keyFour.onclick = () => {
-      modeDisabled()
+      modeDisabled(true)
       calc()
 
       setInterval(keyValue, 3000, 4)
@@ -513,7 +517,7 @@
     }
 
     keyEight.onclick = () => {
-      modeDisabled()
+      modeDisabled(true)
       calc()
 
       setInterval(keyValue, 3000, 8)
@@ -521,7 +525,7 @@
     }
 
     keyTwelve.onclick = () => {
-      modeDisabled()
+      modeDisabled(true)
       calc()
 
       setInterval(keyValue, 3000, 12)
@@ -529,7 +533,7 @@
     }
 
     keyRandom.onclick = () => {
-      modeDisabled()
+      modeDisabled(true)
       calc()
 
       let R = Math.floor(Math.random() * 38)
@@ -570,7 +574,9 @@
           KeyScore.innerText = key
         } else {
           // 如果按到錯誤的鍵，錯誤鍵數會增加，並且改色
-          type.setAttribute("background-color", "#f61e1e")
+          type.classList.add('colorError')
+          // type.classList.replace('colorOrign', 'colorError')
+          // type.setAttribute("background-color", "#f61e1e")
           error++
           ErrorScore.innerText = error
         }
@@ -589,9 +595,12 @@
     // 設定所有有 .mode 的按鈕開始後不能被點選，可以選到，但是沒有作用 --0427解決
     // 成績不能一筆一筆一直存嗎? --0429解決
     // 按鍵效果css 要有按鍵被壓扁的感覺 (.key:active 有效)(.colorOn 沒效)  --0428解決，原來是因為權重及先後順序問題
+    // 按結束遊戲不會停止 --OK
 
-    // 按結束遊戲不會停止
-
+    // 計算總出現的鍵，設變數 ++，並計算錯誤率及正確率
+    // 判斷不能有重複的隨機數字
+    // 按結束按鈕，到輸入名字完成時，這段時間按鍵還是會繼續跑
+    // sweetalert 更改 font-size
   </script>
 </body>
 
