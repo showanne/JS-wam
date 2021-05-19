@@ -444,8 +444,8 @@
       modeDisabled(true)
       calc()
 
-      // timer = setInterval(keyValue, 3000, 2)
-      setInterval(keyValue, 3000, 2)
+      timer = setInterval(keyValue, 3000, 2)
+      // setInterval(keyValue, 3000, 2)
       keyValue(2)  //初始二鍵模式
     }
 
@@ -458,7 +458,9 @@
     // 結束 按鍵
     btnEnd.onclick = () => {
       console.log('end');
-      clearInterval(keyValue)
+      clearInterval(timer)
+      // clearInterval(keyValue)
+
       modeDisabled(false)
 
       for (const td of tds) {
@@ -518,7 +520,7 @@
       modeDisabled(true)
       calc()
 
-      setInterval(keyValue, 3000, 4)
+      timer = setInterval(keyValue, 3000, 4)
       keyValue(4)
     }
 
@@ -526,7 +528,7 @@
       modeDisabled(true)
       calc()
 
-      setInterval(keyValue, 3000, 8)
+      timer = setInterval(keyValue, 3000, 8)
       keyValue(8)
     }
 
@@ -534,7 +536,7 @@
       modeDisabled(true)
       calc()
 
-      setInterval(keyValue, 3000, 12)
+      timer = setInterval(keyValue, 3000, 12)
       keyValue(12)
     }
 
@@ -546,7 +548,7 @@
       console.log(`${R}`);
       keyR.innerText = R
 
-      setInterval(keyValue, 3000, R)
+      timer = setInterval(keyValue, 3000, R)
       keyValue(R)
     }
 
@@ -606,7 +608,7 @@
 
     // 計算總出現的鍵，設變數 ++，並計算錯誤率及正確率
     // 判斷不能有重複的隨機數字
-    // 按結束按鈕，到輸入名字完成時，這段時間按鍵還是會繼續跑
+    // 按結束按鈕，到輸入名字完成時，這段時間按鍵還是會繼續跑  --0519解決，clearInterval 變數設錯
   </script>
 </body>
 
