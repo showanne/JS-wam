@@ -11,6 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
   <!-- PaperCSS - the less formal CSS framework -->
   <!-- https://www.getpapercss.com/ -->
   <!-- <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css"> -->
@@ -201,6 +204,10 @@
   .swal2-title {
     font-size: 1.5em !important;
     line-height: 0.9;
+  }
+
+  .swal2-input {
+    margin: 0 auto !important;
   }
 </style>
 
@@ -469,9 +476,19 @@
       }
 
       Swal.fire({
-        title: `恭喜你成功按到 ${key} 個鍵，加油
-                <br>目前等級為 ${level()}
-                <br>路過請留下大名，謝謝`,
+        title: `恭喜你，路過請留下大名，謝謝`,
+        html: `<table align="center" cellpadding="19">
+                <tr>
+                  <td><i class="fas fa-user-secret fa-3x" style="color:#f3a712;"></i></td>
+                  <td><i class="fas fa-bug fa-3x" style="color:#ff4f79;"></i></td>
+                  <td><i class="fas fa-award fa-3x" style="color:#7161ef;"></i></td>
+                </tr>
+                <tr>
+                  <td style="color:#ae7709;">${level()}</td>
+                  <td style="color:#E00034;">${error}鍵</td>
+                  <td style="color:#3820E9;">${key}鍵</td>
+                </tr>
+              </table>`,
         input: 'text',
         inputAttributes: {
           maxlength: 3, //控制字數
