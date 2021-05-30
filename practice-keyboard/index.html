@@ -358,17 +358,33 @@
 
 
     // 假如資料庫內有內容，將內容加到 ListScore
-    for (let S in ScoreStorage.StorageArr) {
-      if (ScoreStorage !== 0) {
-        ListScore.insertAdjacentHTML('beforeend', `
+    if (ScoreStorage !== 0) {
+      // 判斷資料多餘10筆，只印10筆
+      if (ScoreStorage.StorageArr.length > 10) {
+        console.log(ScoreStorage.StorageArr.length);
+        for (let i = (ScoreStorage.StorageArr.length - 10); i <= 10; i++) {
+          ListScore.insertAdjacentHTML('beforeend', `
+          <tr>
+            <td align="center">${ScoreStorage.StorageArr[i].level}</td>
+            <td align="center">${ScoreStorage.StorageArr[i].name}</td>
+            <td align="center">${ScoreStorage.StorageArr[i].key}鍵</td>
+            <td align="center">${ScoreStorage.StorageArr[i].error}鍵</td>
+            <td align="center">${ScoreStorage.StorageArr[i].time}秒</td>
+          </tr>
+          `)
+        }
+      } else {
+        for (let S in ScoreStorage.StorageArr) {
+          ListScore.insertAdjacentHTML('beforeend', `
         <tr>
           <td align="center">${ScoreStorage.StorageArr[S].level}</td>
           <td align="center">${ScoreStorage.StorageArr[S].name}</td>
           <td align="center">${ScoreStorage.StorageArr[S].key}鍵</td>
           <td align="center">${ScoreStorage.StorageArr[S].error}鍵</td>
           <td align="center">${ScoreStorage.StorageArr[S].time}秒</td>
-        </tr>
-        `)
+          </tr>
+          `)
+        }
       }
     }
 
